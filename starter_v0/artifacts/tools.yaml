@@ -123,3 +123,22 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+  # ---------------- Custom team tools (TV2) ----------------
+  - name: summarize_text
+    description: "Rút trích tóm tắt các câu quan trọng từ một đoạn văn bản dài. Dùng khi người dùng yêu cầu tóm tắt, rút gọn nội dung bài viết. Không dùng khi cần tìm kiếm web hoặc cào URL."
+    parameters:
+      type: object
+      properties:
+        text: {type: string, description: "Văn bản cần tóm tắt"}
+        max_sentences: {type: integer, default: 3, description: "Số câu mong muốn trong bản tóm tắt"}
+      required: [text]
+
+  - name: analyze_sentiment
+    description: "Phân tích sắc thái cảm xúc (tích cực, tiêu cực, trung tính) của đoạn văn bản hoặc bài đăng mạng xã hội. Dùng khi người dùng muốn đánh giá thái độ hoặc phản ứng dư luận."
+    parameters:
+      type: object
+      properties:
+        text: {type: string, description: "Đoạn văn bản hoặc tweet cần phân tích cảm xúc"}
+      required: [text]
+

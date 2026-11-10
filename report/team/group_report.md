@@ -95,11 +95,13 @@ Lấy từ `starter_v0/transcripts/*.transcript.json`.
 
 | Item | Evidence File | What Worked | Risk / Guardrail |
 |---|---|---|---|
-| Tool mới (`tools/<tên>/`) |  |  |  |
-| Unit test tool mới (≥ 3 test/tool) | `pytest` output (0 failed) |  |  |
+| Tool mới (`tools/<tên>/`) | `tools/summarize_text/`<br>`tools/analyze_sentiment/` | Trích xuất câu tóm tắt chính xác, tính tỷ lệ nén; phân tích sắc thái cảm xúc (khen/chê/trung tính) và điểm số độ tự tin | Bọc `try-except` toàn diện, kiểm tra chặt chẽ kiểu dữ liệu đầu vào, trả về error dict an toàn, tuyệt đối không raise exception làm sập agent |
+| Unit test tool mới (≥ 3 test/tool) | `tests/test_tools_todo.py`<br>(`pytest` output 6 passed, 0 failed) | 6 tests kiểm tra happy path, bad input (văn bản rỗng, max_sentences âm) và failure path (sai kiểu dữ liệu) | Chạy 100% offline, mock dữ liệu sạch, đảm bảo độ bền vững của code tool độc lập với LLM |
 | UI (lệnh chạy + link dùng thử) |  |  |  |
 
-Tool unit tests: số test đã viết, và một ví dụ lỗi mà unit test bắt được nhưng eval không bắt được.
+Tool unit tests:
+- Số test đã viết: 6 tests (3 test cho `summarize_text`, 3 test cho `analyze_sentiment`), toàn bộ pass 100% khi chạy `python -m pytest tests/test_tools_todo.py`.
+- Ví dụ lỗi mà unit test bắt được nhưng eval không bắt được: Khi model gọi tool với `text=None` hoặc truyền số nguyên (hoặc `max_sentences <= 0`), bộ chấm eval chỉ đối chiếu tên tool và danh sách arguments mong đợi (eval sẽ báo PASS về mặt routing) nhưng trên thực tế hàm Python trong tool sẽ bị crash ngay lập tức do `TypeError` hoặc `AttributeError` khi gọi `.strip()` / `.lower()`. Nhờ có unit test, ta đã kiểm thử và xử lý bọc ngoại lệ để tool trả về `{"status": "error", "error": "..."}` an toàn, giúp Agent không bị chết runtime.
 
 ### B5. Bonus Evidence
 
