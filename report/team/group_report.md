@@ -18,17 +18,26 @@
 
 > 1–2 câu mô tả agent dùng để làm gì (cho team khác hiểu nhanh).
 
-Ví dụ: "Research agent: tìm tin theo từ khóa / theo tài khoản, đọc URL, tổng hợp thành digest, và gửi lên Telegram khi được xác nhận."
+Nhóm xây dựng Research Agent hỗ trợ người dùng thực hiện các tác vụ nghiên cứu và xử lý thông tin thông qua hội thoại tự nhiên. Agent có khả năng sử dụng LLM kết hợp với các tools được cấu hình trong tools.yaml, thực hiện tool calling, xử lý nhiều lượt hội thoại, hỏi lại khi thiếu thông tin và lưu lại lịch sử tương tác cùng kết quả thực thi tools dưới dạng JSON transcript.
 
 **Cách chạy UI:**
+Framework: Streamlit.
 
-> Lệnh chạy UI (ví dụ `streamlit run app.py`) và dependency đã thêm vào `starter_v0/requirements.txt`.
+Lệnh chạy UI: streamlit run app.py
 
-**Link dùng thử (deploy):**
+Địa chỉ local mặc định: http://localhost:8501
 
-> Dán link public để team khác mở thử ngay. Cách deploy nhanh bằng Cloudflare Tunnel xem README. Nếu deploy Vercel/Streamlit Cloud thì dán link đó.
->
-> URL:
+Dependency: streamlit được thêm vào starter_v0/requirements.txt.
+
+Agent backend: Sử dụng logic từ chat.py, kết nối LLM thông qua provider (mặc định OpenRouter), đọc cấu hình từ artifacts/system_prompt.md và artifacts/tools.yaml.
+
+Transcript: Các lượt hội thoại và tool execution được lưu tự động trong thư mục transcripts/ dưới định dạng .transcript.json.
+
+
+**Link dùng thử (deploy):** 
+
+URL: Chưa có link public tại thời điểm hoàn thiện báo cáo.
+Local demo: Chạy streamlit run app.py và truy cập http://localhost:8501.
 
 ### A2. Tool agent có
 
@@ -37,8 +46,17 @@ Ví dụ: "Research agent: tìm tin theo từ khóa / theo tài khoản, đọc 
 | Tên tool | Làm được gì | Tool mới nhóm thêm? |
 |---|---|---|
 | clarify | hỏi lại người dùng khi thiếu thông tin | không |
-|  |  |  |
-|  |  |  |
+| timeline | Lấy các bài đăng gần đây từ một tài khoản mạng xã hội cụ thể. | Không |
+| social_search | Tìm kiếm bài đăng trên mạng xã hội theo từ khóa, sắp xếp theo mới nhất (Latest) hoặc nổi bật (Top). | Không |
+| lookup | Tìm kiếm thông tin trên Internet theo chủ đề chung hoặc tin tức, có giới hạn khoảng thời gian. | Không |
+| fetch | Truy cập URL và lấy nội dung từ trang web được chỉ định. | Không |
+| format | Định dạng và tổng hợp dữ liệu đã thu thập thành brief, sections, bullets, thread hoặc daily AI Vietnam. | Không |
+| send | Gửi nội dung văn bản ra bên ngoài sau khi người dùng xác nhận. | Không |
+| policy | Tra cứu tài liệu nội bộ theo chủ đề như AI research, trích dẫn nguồn, bảo mật dữ liệu và quy định sử dụng tools. | Không |
+| papers | 	Tìm kiếm các bài báo khoa học theo từ khóa và tiêu chí sắp xếp. | Không |
+| paper_text | Lấy nội dung văn bản của bài báo khoa học từ arXiv để phục vụ nghiên cứu và phân tích. | Không |
+| summarize_text | Tóm tắt văn bản dài thành các ý hoặc câu quan trọng theo số câu được yêu cầu. | Có |
+| analyze_sentiment | Phân tích cảm xúc của văn bản hoặc bài đăng mạng xã hội, phân loại tích cực, tiêu cực hoặc trung tính. | Có |
 
 ### A3. Câu hỏi mẫu để thử
 

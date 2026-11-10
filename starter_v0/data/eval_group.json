@@ -3,5 +3,374 @@
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "group_001_missing_recipient",
+      "phase": "B",
+      "query": "Send an email saying that the meeting has been postponed until Friday.",
+      "failure_type": "missing_info",
+      "expect": {
+        "no_tool": true
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for the recipient's email address before attempting to send an email. The agent must not guess the recipient or call the send tool when required information is missing."
+      }
+    },
+    {
+      "id": "group_002_out_of_scope",
+      "phase": "B",
+      "query": "Can you physically repair my laptop screen and replace its broken hardware?",
+      "failure_type": "out_of_scope",
+      "expect": {
+        "no_tool": true
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent recognizes that physical hardware repair is outside the available tool capabilities and does not call unrelated tools."
+      }
+    },
+    {
+      "id": "group_003_send_confirmation",
+      "phase": "B",
+      "query": "Send this message: The project deadline has been moved to Friday.",
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Do you confirm that I should send this message: The project deadline has been moved to Friday?"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for explicit confirmation through clarify before calling send."
+      }
+    },
+    {
+      "id": "group_004_format_summary",
+      "phase": "B",
+      "query": "Summarize the following information into three bullet points: Artificial intelligence is transforming education. Students can use AI tools to receive personalized feedback, practice languages, and understand difficult concepts. However, schools must ensure responsible use, protect student privacy, and prevent overdependence on technology.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "format",
+            "args": {
+              "items": [
+                {
+                  "title": "Artificial intelligence in education",
+                  "summary": "AI provides personalized feedback, language practice, and support for understanding difficult concepts.",
+                  "section": "Benefits"
+                },
+                {
+                  "title": "Responsible AI use",
+                  "summary": "Schools must protect student privacy and prevent overdependence on AI.",
+                  "section": "Challenges"
+                }
+              ],
+              "template": "bullets",
+              "headline": "AI in Education"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent uses the existing format tool to organize supplied information into bullet points instead of calling a nonexistent summarize_text tool."
+      }
+    },
+    {
+      "id": "group_005_unnecessary_tool",
+      "phase": "B",
+      "query": "What is 2 + 2? Answer directly without using any tools.",
+      "failure_type": "unnecessary_tool",
+      "expect": {
+        "no_tool": true
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent answers a simple arithmetic question directly without unnecessary tool calls."
+      }
+    },
+    {
+      "id": "group_006_clarify_format",
+      "phase": "B",
+      "failure_type": "missing_info",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Please summarize some information for me."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "Please provide the information you want me to summarize."
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Artificial intelligence helps businesses automate repetitive tasks, improve customer service, and analyze large amounts of data."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "format",
+            "args": {
+              "items": [
+                {
+                  "title": "Artificial intelligence in business",
+                  "summary": "AI helps businesses automate repetitive tasks, improve customer service, and analyze large amounts of data."
+                }
+              ],
+              "template": "brief"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for missing content and uses format after the user supplies information."
+      }
+    },
+    {
+      "id": "group_007_clarify_lookup",
+      "phase": "B",
+      "failure_type": "missing_info",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Find some information for my research."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "What topic would you like me to research?"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Please research renewable energy in Vietnam."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "renewable energy in Vietnam",
+              "topic": "general",
+              "timeframe": "week",
+              "max_results": 5
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent identifies a missing research topic, asks for clarification, and uses lookup with the correct topic and timeframe."
+      }
+    },
+    {
+      "id": "group_008_clarify_format_template",
+      "phase": "B",
+      "failure_type": "missing_info",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Please organize this information: Cloud computing allows users to access computing resources over the internet. Businesses can reduce infrastructure costs and scale their systems more easily."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "How would you like me to organize this information: as a brief summary, sections, or bullet points?"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Use bullet points."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "format",
+            "args": {
+              "items": [
+                {
+                  "title": "Cloud computing",
+                  "summary": "Users can access computing resources over the internet."
+                },
+                {
+                  "title": "Business benefits",
+                  "summary": "Businesses can reduce infrastructure costs and scale their systems more easily."
+                }
+              ],
+              "template": "bullets"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent retains the original information and applies the formatting preference provided in the second turn."
+      }
+    },
+    {
+      "id": "group_009_clarify_send",
+      "phase": "B",
+      "failure_type": "wrong_boundary",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Please send an announcement saying that tomorrow's meeting has been postponed."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "What message should I send, and who is the intended recipient?"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "The message is for the team. Send: Tomorrow's meeting has been postponed. Please confirm before sending."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Do you confirm that I should send this message to the team: Tomorrow's meeting has been postponed?"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent gathers missing information and requests explicit confirmation before executing send."
+      }
+    },
+    {
+      "id": "group_010_clarify_papers",
+      "phase": "B",
+      "failure_type": "missing_info",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Find scientific papers about a topic I am researching."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "What research topic should I search for?"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Find scientific papers about large language models in education."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "large language models in education",
+              "max_results": 5,
+              "sort_by": "relevance"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for a missing research topic and then routes the clarified request to the scientific papers tool."
+      }
+    },
+    {
+      "id": "G01_summarize_text_routing",
+      "phase": "B",
+      "query": "Tóm tắt giúp mình đoạn văn này thành 2 câu: Trí tuệ nhân tạo đang thay đổi toàn diện ngành công nghệ toàn cầu. Các mô hình ngôn ngữ lớn liên tục được cải tiến với khả năng suy luận mạnh mẽ hơn. Tuy nhiên thách thức về an toàn và độ tin cậy vẫn là vấn đề lớn. Các kỹ sư đang nỗ lực tối ưu hóa chi phí vận hành.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "max_sentences": 2
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "custom_tool_summarize",
+        "difficulty": "easy",
+        "what_it_tests": "Yêu cầu tóm tắt đoạn văn bản cụ thể thành 2 câu -> route đúng summarize_text với max_sentences=2."
+      }
+    },
+    {
+      "id": "G02_analyze_sentiment_routing",
+      "phase": "B",
+      "query": "Đoạn nhận xét này là khen hay chê vậy: Sản phẩm dùng rất mượt mà, giao diện tuyệt vời và hỗ trợ khách hàng xuất sắc!",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "analyze_sentiment",
+            "args": {}
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "custom_tool_sentiment",
+        "difficulty": "easy",
+        "what_it_tests": "Hỏi về cảm xúc/đánh giá thái độ của văn bản -> route đúng analyze_sentiment."
+      }
+    },
+    {
+      "id": "G06_multiturn_clarify_then_summarize",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Tóm tắt bài viết này hộ mình"},
+        {"role": "user", "content": "Đoạn văn này nhé: Trí tuệ nhân tạo đang bùng nổ mạnh mẽ trên toàn cầu. Hàng triệu người dùng đang trải nghiệm công cụ mới mỗi ngày. Tương lai công nghệ đang mở ra nhiều cơ hội lớn."},
+        {"role": "user", "content": "Rút gọn còn đúng 1 câu thôi"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "max_sentences": 1
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_clarify_then_summarize",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: ban đầu thiếu văn bản -> sau đó bổ sung văn bản và yêu cầu rút gọn 1 câu -> route tới summarize_text với max_sentences=1."
+      }
+    }
+  ]
 }
