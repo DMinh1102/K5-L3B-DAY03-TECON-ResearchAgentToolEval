@@ -1,0 +1,732 @@
+{
+  "run_id": "v3_B_group_openrouter_20261110T234634581757",
+  "version": "v3",
+  "artifact_version": "v3+pcbbbcf975461+tc58fb622bcc2",
+  "prompt_hash": "cbbbcf975461324a39b560ceb4fa440478f3fd5acd4aff691c829f22c6a7d54f",
+  "tools_hash": "c58fb622bcc20a6b04f7e7c1238020d8618acaeabfc804f188131dd25d4f6df2",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "D:\\Projects\\GitHub\\K5-L3B-DAY03-TECON-ResearchAgentToolEval\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\Projects\\GitHub\\K5-L3B-DAY03-TECON-ResearchAgentToolEval\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day03_v2_research_group",
+  "dataset_role": "group",
+  "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
+  "generated_at": "2026-11-10T23:46:34",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 10,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "group_001_missing_recipient",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for the recipient's email address before attempting to send an email. The agent must not guess the recipient or call the send tool when required information is missing."
+      },
+      "input": "Send an email saying that the meeting has been postponed until Friday.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Could you please confirm if you would like me to send this email now?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Could you please confirm if you would like me to send this email now?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Could you please confirm if you would like me to send this email now?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "group_002_out_of_scope",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent recognizes that physical hardware repair is outside the available tool capabilities and does not call unrelated tools."
+      },
+      "input": "Can you physically repair my laptop screen and replace its broken hardware?",
+      "expect": {
+        "no_tool": true
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "I'm unable to physically repair hardware or perform any physical tasks. However, I can provide guidance on how to repair your laptop screen or suggest steps to take for hardware replacement. Would you like some tips or recommendations?",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "group_003_send_confirmation",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for explicit confirmation through clarify before calling send."
+      },
+      "input": "Send this message: The project deadline has been moved to Friday.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Can you please confirm if you would like me to send the message \"The project deadline has been moved to Friday\" to your Telegram channel?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Can you please confirm if you would like me to send the message \"The project deadline has been moved to Friday\" to your Telegram channel?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Can you please confirm if you would like me to send the message \"The project deadline has been moved to Friday\" to your Telegram channel?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G01_summarize_text_routing",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "custom_tool_summarize",
+        "difficulty": "easy",
+        "what_it_tests": "Yêu cầu tóm tắt đoạn văn bản cụ thể thành 2 câu -> route đúng summarize_text với max_sentences=2."
+      },
+      "input": "Tóm tắt giúp mình đoạn văn này thành 2 câu: Trí tuệ nhân tạo đang thay đổi toàn diện ngành công nghệ toàn cầu. Các mô hình ngôn ngữ lớn liên tục được cải tiến với khả năng suy luận mạnh mẽ hơn. Tuy nhiên thách thức về an toàn và độ tin cậy vẫn là vấn đề lớn. Các kỹ sư đang nỗ lực tối ưu hóa chi phí vận hành.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "max_sentences": 2
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "text": "Trí tuệ nhân tạo đang thay đổi toàn diện ngành công nghệ toàn cầu. Các mô hình ngôn ngữ lớn liên tục được cải tiến với khả năng suy luận mạnh mẽ hơn. Tuy nhiên thách thức về an toàn và độ tin cậy vẫn là vấn đề lớn. Các kỹ sư đang nỗ lực tối ưu hóa chi phí vận hành.",
+              "max_sentences": 2
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_text",
+          "args": {
+            "text": "Trí tuệ nhân tạo đang thay đổi toàn diện ngành công nghệ toàn cầu. Các mô hình ngôn ngữ lớn liên tục được cải tiến với khả năng suy luận mạnh mẽ hơn. Tuy nhiên thách thức về an toàn và độ tin cậy vẫn là vấn đề lớn. Các kỹ sư đang nỗ lực tối ưu hóa chi phí vận hành.",
+            "max_sentences": 2
+          },
+          "result": {
+            "status": "success",
+            "summary": "Trí tuệ nhân tạo đang thay đổi toàn diện ngành công nghệ toàn cầu. Tuy nhiên thách thức về an toàn và độ tin cậy vẫn là vấn đề lớn.",
+            "original_sentences_count": 4,
+            "summary_sentences_count": 2,
+            "compression_ratio": 0.51
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_analyze_sentiment_routing",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "custom_tool_sentiment",
+        "difficulty": "easy",
+        "what_it_tests": "Hỏi về cảm xúc/đánh giá thái độ của văn bản -> route đúng analyze_sentiment."
+      },
+      "input": "Đoạn nhận xét này là khen hay chê vậy: Sản phẩm dùng rất mượt mà, giao diện tuyệt vời và hỗ trợ khách hàng xuất sắc!",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "analyze_sentiment",
+            "args": {}
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "analyze_sentiment",
+            "args": {
+              "text": "Sản phẩm dùng rất mượt mà, giao diện tuyệt vời và hỗ trợ khách hàng xuất sắc!"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "analyze_sentiment",
+          "args": {
+            "text": "Sản phẩm dùng rất mượt mà, giao diện tuyệt vời và hỗ trợ khách hàng xuất sắc!"
+          },
+          "result": {
+            "status": "success",
+            "sentiment": "positive",
+            "score": 1.0,
+            "key_indicators": [
+              "tuyệt"
+            ],
+            "word_count": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "group_006_clarify_format",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent asks for missing content and uses format after the user supplies information."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Please summarize some information for me."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "Please provide the information you want me to summarize."
+              }
+            }
+          ],
+          "content": "Please provide the information you want me to summarize."
+        },
+        {
+          "role": "user",
+          "content": "Artificial intelligence helps businesses automate repetitive tasks, improve customer service, and analyze large amounts of data."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {}
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "text": "Artificial intelligence helps businesses automate repetitive tasks, improve customer service, and analyze large amounts of data.",
+              "max_sentences": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_text",
+          "args": {
+            "text": "Artificial intelligence helps businesses automate repetitive tasks, improve customer service, and analyze large amounts of data.",
+            "max_sentences": 3
+          },
+          "result": {
+            "status": "success",
+            "summary": "Artificial intelligence helps businesses automate repetitive tasks, improve customer service, and analyze large amounts of data.",
+            "original_sentences_count": 1,
+            "summary_sentences_count": 1,
+            "compression_ratio": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "group_007_clarify_lookup",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent identifies a missing research topic, asks for clarification, and uses lookup with the correct topic and timeframe."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Find some information for my research."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "What topic would you like me to research?"
+              }
+            }
+          ],
+          "content": "What topic would you like me to research?"
+        },
+        {
+          "role": "user",
+          "content": "Please search on the web for information about renewable energy in Vietnam."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "renewable energy in Vietnam"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "renewable energy in Vietnam",
+              "topic": "general"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "renewable energy in Vietnam",
+            "topic": "general"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "renewable energy in Vietnam",
+            "topic": "general",
+            "timeframe": "week",
+            "items": [
+              {
+                "title": "Vietnam’s Gia Lai draws wave of renewable energy investment as wind projects expand",
+                "url": "https://powerphilippines.com/vietnams-gia-lai-draws-wave-of-renewable-energy-investment-as-wind-projects-expand",
+                "source": "powerphilippines.com",
+                "summary": "By the end of 2025, Gia Lai had 87 renewable energy and hydropower projects in operation. This includes 17 wind farms with total capacity of 916 MW, reinforcing its position as a leading renewable energy centre in Vietnam.\n\nSource: \n\n#### Tags: [...] November 10, 2026\n\n. Construction is expected to start in December 2026, with operations targeted for early 2028.\n\n[](\n\nIn April, another consortium was selected to develop the 42-MW Nhon Hoa 4 wind power plant, with investment estimated at VND1.68 trillion.\n\nSeparately, VinEnergo, a subsidiary of Vietnam’s Vingroup, was named investor in the Hon Trau phase 1 and Vinh Thuan wind power projects. The combined investment exceeds VND53 trillion. [...] #### Tags:\n\nANI Power Chu Pong wind power project clean energy investments Gia Lai renewable energy Gia Lai wind power projects Hon Trau wind power project National Power Development Plan VIII Nhon Hoa 4 wind power plant renewable energy investment Song Da 505 Southeast Asia renewable energy Trang Duc Solar Power Vietnam green energy Vietnam renewable energy Vietnam wind power VinEnergo Vingroup Vinh Thuan wind power project wind energy development wind farm capacity\n\n[](\n\n[](\n\nPrevious Post",
+                "score": 0.8440111
+              },
+              {
+                "title": "Vietnamese (HOSE) Renewable Energy Industry Analysis",
+                "url": "https://simplywall.st/de/markets/vn/utilities/renewable-energy",
+                "source": "simplywall.st",
+                "summary": "|  |\n\n| VN Market | -1.86% |\n| Utilities | -1.95% |\n| Renewable Energy | -1.15% |\n| Independent Power Producers and Energy Traders | -0.051% |\n| Renewable Energy | -2.33% |\n\nIndustry PE\n\n Investors are most optimistic about the Renewable Energy industry even though it's trading below its 3-year average PE ratio of 15.1x.\n\n+ Analysts are expecting annual earnings growth of 33.3%, which is higher than its past year's earnings decline of 5.6% per year. [...] ## Industry Valuation and Performance\n\nHas this industry's valuation changed over the past few years?\n\n1Y\n\n3Y\n\n5Y\n\n10Y\n\n Price to Earnings\n Price to Sales\n Median PE\n\nPrice to Earnings Ratio7.4x\n\nTotal Market Cap: ₫86.87t\n\nTotal Earnings: ₫11.74t\n\nTotal Revenue: ₫82.88t\n\nCurrent Industry PE\n\n Investors are pessimistic on the Vietnamese Renewable Energy industry, indicating that they anticipate long term growth rates will be lower than they have historically. [...] Water\n Oil and Gas Storage and Transportation\n Automotive Retail\n Real Estate Operating Companies\n Real Estate Development\n Renewable Energy",
+                "score": 0.798643
+              },
+              {
+                "title": "As Viet Nam scales up wind and solar power, keeping ...",
+                "url": "https://www.facebook.com/vietnamtodayinternational/posts/as-viet-nam-scales-up-wind-and-solar-power-keeping-the-power-system-stable-amid-/2018154522824209",
+                "source": "facebook.com",
+                "summary": "Vietnam's solar and wind power output has increased from 4.7 TWh in 2019 to 9.5 TWh in 2020, equivalent to an increase of 1.98% in total electricity output.",
+                "score": 0.7476348
+              },
+              {
+                "title": "Renewable Energy Solutions | Hitachi Energy",
+                "url": "https://www.hitachienergy.com/africa/en/markets/renewable-energy",
+                "source": "hitachienergy.com",
+                "summary": "Aerial view of windmill and Solar panel, photovoltaic, alternative electricity source - concept of sustainable resources on a sunny day, Bac Phong, Thuan Bac, Ninh Thuan, Vietnam\n\n### Grid-eXpand®\n\nGrid-eXpand® is our range of modular and prefabricated grid connection solutions that make it faster, simpler and more efficient to expand power grid capacity and accelerate the transition to a more sustainable energy system.\n\nOceaniQ™ - innovative technological solutions\n\n### OceaniQ [...] As we strive to limit the impact of global climate change and secure energy supply, we must look to renewable energy sources such as solar, offshore wind, onshore wind and hydropower whilst maintaining system stability by using existing and new technologies.\n\nAs renewable energy solutions replace fossil fuels, there are a variety of challenges to overcome, most notably being their connection and integration with the grid to ensure secure and reliable energy power to all. [...] ### Digital Substations\n\nDigital substation technology is applicable for new and retrofit installations of air and gas-insulated switchgear substations. Learn more.\n\n## Solar Power\n\nSolar power is the world’s fastest-growing renewable energy source. However, delivering utility scale solar presents significant challenges, from speed and integration into the grid, through to the deployment and utilization of storage to enhance its value.\n\noffshore windmill in the ocean\n\n## Offshore Wind",
+                "score": 0.6864757
+              },
+              {
+                "title": "Vietnam among 13 countries maintaining energy security stability - VnEconomy",
+                "url": "https://en.vneconomy.vn/vietnam-among-13-countries-maintaining-energy-security-stability.htm",
+                "source": "en.vneconomy.vn",
+                "summary": "## Related\n\nDraft Electricity Law targets renewable energy bottlenecks  \n\n### Draft Electricity Law targets renewable energy bottlenecks\n\n04 Nov 2026\n\nVietnam needs integrated solutions to accelerate clean energy transition: experts  \n\n### Vietnam needs integrated solutions to accelerate clean energy transition: experts\n\n30 Oct 2026\n\nPM orders urgent measures to strengthen energy security through 2030  \n\n### PM orders urgent measures to strengthen energy security through 2030\n\n23 Oct 2026 [...] According to the report, total electricity generation and imports in 2026 are estimated at 356.2 billion kWh, up 10.3% from the previous year and about 6.2 billion kWh higher than the baseline scenario. The national power system recorded a peak load of 57,537 MW on June 24, 2026, including 30,248 MW in northern Vietnam. Despite these record demand levels, the country avoided rotating power outages. [...] Commercial electricity consumption increased by 9.84% during the first ten months of 2026, nearly matching the pace of GDP growth for the first time. During the first nine months of the year, the power sector began construction of 136 grid projects and completed 131 projects. These results were attributed to careful planning, including a three-scenario power supply plan approved at the end of 2025, timely commissioning of generation and transmission facilities, reservoir water storage",
+                "score": 0.6638657
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "group_008_clarify_format_template",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent retains the original information and applies the formatting preference provided in the second turn."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Please organize this information: Cloud computing allows users to access computing resources over the internet. Businesses can reduce infrastructure costs and scale their systems more easily."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "How would you like me to organize this information: as a brief summary, sections, or bullet points?"
+              }
+            }
+          ],
+          "content": "How would you like me to organize this information: as a brief summary, sections, or bullet points?"
+        },
+        {
+          "role": "user",
+          "content": "Use bullet points."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "format",
+            "args": {
+              "template": "bullets"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "format",
+            "args": {
+              "items": [
+                {
+                  "title": "Cloud Computing Benefits",
+                  "summary": "Overview of cloud computing and its advantages for businesses."
+                },
+                {
+                  "title": "Access to Resources",
+                  "summary": "Users can access computing resources over the internet."
+                },
+                {
+                  "title": "Cost Reduction",
+                  "summary": "Businesses can reduce infrastructure costs."
+                },
+                {
+                  "title": "Scalability",
+                  "summary": "Easier to scale systems."
+                }
+              ],
+              "template": "bullets",
+              "headline": "Key Points on Cloud Computing"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "format",
+          "args": {
+            "items": [
+              {
+                "title": "Cloud Computing Benefits",
+                "summary": "Overview of cloud computing and its advantages for businesses."
+              },
+              {
+                "title": "Access to Resources",
+                "summary": "Users can access computing resources over the internet."
+              },
+              {
+                "title": "Cost Reduction",
+                "summary": "Businesses can reduce infrastructure costs."
+              },
+              {
+                "title": "Scalability",
+                "summary": "Easier to scale systems."
+              }
+            ],
+            "template": "bullets",
+            "headline": "Key Points on Cloud Computing"
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "bullets",
+            "markdown": "- Overview of cloud computing and its advantages for businesses. - \n- Users can access computing resources over the internet. - \n- Businesses can reduce infrastructure costs. - \n- Easier to scale systems. - ",
+            "item_count": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "group_009_clarify_send",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Tests whether the agent gathers missing information and requests explicit confirmation before executing send."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Please send an announcement saying that tomorrow's meeting has been postponed."
+        },
+        {
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "What message should I send, and who is the intended recipient?"
+              }
+            }
+          ],
+          "content": "What message should I send, and who is the intended recipient?"
+        },
+        {
+          "role": "user",
+          "content": "The message is for the team. Send: Tomorrow's meeting has been postponed. Please confirm before sending."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Do you confirm that I should send the message: 'Tomorrow's meeting has been postponed.' to the team?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Do you confirm that I should send the message: 'Tomorrow's meeting has been postponed.' to the team?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Do you confirm that I should send the message: 'Tomorrow's meeting has been postponed.' to the team?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G06_multiturn_clarify_then_summarize",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_clarify_then_summarize",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: ban đầu thiếu văn bản -> sau đó bổ sung văn bản và yêu cầu rút gọn 1 câu -> route tới summarize_text với max_sentences=1."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt bài viết này hộ mình"
+        },
+        {
+          "role": "user",
+          "content": "Đoạn văn này nhé: Trí tuệ nhân tạo đang bùng nổ mạnh mẽ trên toàn cầu. Hàng triệu người dùng đang trải nghiệm công cụ mới mỗi ngày. Tương lai công nghệ đang mở ra nhiều cơ hội lớn."
+        },
+        {
+          "role": "user",
+          "content": "Rút gọn còn đúng 1 câu thôi"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "max_sentences": 1
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "summarize_text",
+            "args": {
+              "text": "Trí tuệ nhân tạo đang bùng nổ mạnh mẽ trên toàn cầu. Hàng triệu người dùng đang trải nghiệm công cụ mới mỗi ngày. Tương lai công nghệ đang mở ra nhiều cơ hội lớn.",
+              "max_sentences": 1
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "summarize_text",
+          "args": {
+            "text": "Trí tuệ nhân tạo đang bùng nổ mạnh mẽ trên toàn cầu. Hàng triệu người dùng đang trải nghiệm công cụ mới mỗi ngày. Tương lai công nghệ đang mở ra nhiều cơ hội lớn.",
+            "max_sentences": 1
+          },
+          "result": {
+            "status": "success",
+            "summary": "Trí tuệ nhân tạo đang bùng nổ mạnh mẽ trên toàn cầu.",
+            "original_sentences_count": 3,
+            "summary_sentences_count": 1,
+            "compression_ratio": 0.68
+          }
+        }
+      ]
+    }
+  ]
+}

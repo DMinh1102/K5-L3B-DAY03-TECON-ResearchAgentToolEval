@@ -1,0 +1,485 @@
+{
+  "transcript_id": "v3_openrouter_20261110T234810884015",
+  "version": "v3",
+  "artifact_version": "v3+pcbbbcf975461+tc58fb622bcc2",
+  "prompt_hash": "cbbbcf975461324a39b560ceb4fa440478f3fd5acd4aff691c829f22c6a7d54f",
+  "tools_hash": "c58fb622bcc20a6b04f7e7c1238020d8618acaeabfc804f188131dd25d4f6df2",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "D:\\Projects\\GitHub\\K5-L3B-DAY03-TECON-ResearchAgentToolEval\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\Projects\\GitHub\\K5-L3B-DAY03-TECON-ResearchAgentToolEval\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-11-10T23:48:10",
+  "updated_at": "2026-11-10T23:49:30",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-11-10T23:48:16",
+      "user": "Tìm kiếm các bài báo mới về Reasoning Models trên arXiv",
+      "status": "answered",
+      "assistant_text": "Here are some recent papers on Reasoning Models from arXiv:\n\n1. **[Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning](http://arxiv.org/abs/2611.12886v1)**  \n   - **Authors**: Haozhi Yuan, Handong Li, Yifan Zhang, Qianshan Wei  \n   - **Published**: November 9, 2026  \n   - **Summary**: This paper introduces Reframe, a post-training framework that aligns observation states for visual agents in reinforcement learning. It addresses challenges in tool use and observation grounding, demonstrating improved performance over existing methods.  \n   - **[PDF Link](https://arxiv.org/pdf/2611.12886v1)**\n\n2. **[DinoComplete: 3D Shape Completion with Distilled Semantic Priors and State Space Models](http://arxiv.org/abs/2605.26949v3)**  \n   - **Authors**: Furkan Mert Algan, Eckehard Steinbach  \n   - **Published**: May 26, 2026  \n   - **Summary**: This paper presents DinoComplete, a framework for 3D shape completion that integrates geometric reconstruction with semantic priors. It shows competitive results in shape completion tasks while being efficient in terms of parameters and memory usage.  \n   - **[PDF Link](https://arxiv.org/pdf/2605.26949v3)**\n\n3. **[Mitigating Agentic Deception via Evaluation-Side Partially Observable Games](http://arxiv.org/abs/2611.12835v1)**  \n   - **Authors**: Hanxiao Li et al.  \n   - **Published**: November 9, 2026  \n   - **Summary**: This work formulates deception mitigation in AI as a game-theoretic problem, proposing a framework that enhances the evaluation of agent behavior to prevent deceptive actions.  \n   - **[PDF Link](https://arxiv.org/pdf/2611.12835v1)**\n\n4. **[Programming Prescience: Issues in Human Construction of Forecasting Bots](http://arxiv.org/abs/2611.12834v1)**  \n   - **Authors**: Priya Dhawka, Benjamin Wilson, Andrew Head  \n   - **Published**: November 9, 2026  \n   - **Summary**: This paper explores the challenges faced by builders of AI forecasting bots, highlighting issues in tuning, reasoning, and evaluation of bot performance.  \n   - **[PDF Link](https://arxiv.org/pdf/2611.12834v1)**\n\n5. **[Control policies for a two-stage queueing system with parallel and single server options](http://arxiv.org/abs/2601.13576v2)**  \n   - **Authors**: Shuwen Lu, Mark E. Lewis, Jamol Pender  \n   - **Published**: January 20, 2026  \n   - **Summary**: This study investigates optimal control policies in a two-stage queueing system, providing insights into decision-making processes and performance comparisons with heuristic policies.  \n   - **[PDF Link](https://arxiv.org/pdf/2601.13576v2)**\n\nFeel free to ask if you need more information on any specific paper!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "query": "Reasoning Models",
+                "max_results": 5,
+                "sort_by": "lastUpdatedDate"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "query": "Reasoning Models",
+                "max_results": 5,
+                "sort_by": "lastUpdatedDate"
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "Reasoning Models",
+                "api_query": "all:Reasoning AND all:Models",
+                "total_results": 75287,
+                "items": [
+                  {
+                    "arxiv_id": "2611.12886v1",
+                    "title": "Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning",
+                    "summary": "Agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) offer complementary routes to post-training. For visual agents, however, tool use presents two related challenges. Models may overlook useful tool-returned observations, while poorly grounded actions can limit the evidence available for subsequent distillation. We introduce Reframe, a post-training framework that treats the observation state, rather than only the output distribution, as an object of alignment. First, Ground-Drop-GRPO (GD-GRPO) trains spatial and temporal specialists with evidence-aware rewards and stochastic removal of the original visual input, encouraging them to acquire grounded evidence and use the returned observations. Second, Observation-Gated-MOPD (OG-MOPD) replaces deficient tool actions with canonical ones mid-rollout and resumes distillation from the repaired observation. The two stages complement each other, as learning to rely on tool-returned observations can help the policy benefit from observation repair. Neither stage requires a task-specific SFT cold start. Extensive experiments over 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation results show that GD-GRPO increases observation dependence and tool gain compared with outcome-based GRPO.",
+                    "authors": [
+                      "Haozhi Yuan",
+                      "Handong Li",
+                      "Yifan Zhang",
+                      "Qianshan Wei"
+                    ],
+                    "published": "2026-11-09T18:59:54Z",
+                    "updated": "2026-11-09T18:59:54Z",
+                    "url": "http://arxiv.org/abs/2611.12886v1",
+                    "pdf_url": "https://arxiv.org/pdf/2611.12886v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CV",
+                    "categories": [
+                      "cs.CV"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.26949v3",
+                    "title": "DinoComplete: 3D Shape Completion with Distilled Semantic Priors and State Space Models",
+                    "summary": "3D shape completion from partial scans remains challenging for unseen categories and noisy real-world observations, where geometry alone is often insufficient for inferring missing structure. We present DinoComplete, a deterministic and efficient shape completion framework that augments geometric reconstruction with voxel-aligned semantic priors distilled from DINO features. First, we construct multi-view DINO feature volumes aligned with ShapeNet data and train a student network to predict dense semantic features directly from incomplete shapes. These predicted features capture global structure and part-aware semantic context while remaining aligned with the underlying geometry. We then integrate these distilled features into a completion network, where geometric and semantic voxel representations are fused through voxel state-space modeling. To enable efficient long-range reasoning without sacrificing resolution, we introduce a Multi-Scale Voxel Mamba module that refines the fused features by combining full-grid and chunk-wise sequence modeling. Experiments on unseen ShapeNet categories and ScanNet objects show that DinoComplete achieves competitive completion quality than prior deterministic and generative based completion methods while using relatively fewer parameters, requiring lower memory, and achieving faster inference. Our results demonstrate that distilling semantic priors from visual foundation models improves generalization and robustness in 3D shape completion.",
+                    "authors": [
+                      "Furkan Mert Algan",
+                      "Eckehard Steinbach"
+                    ],
+                    "published": "2026-05-26T12:40:52Z",
+                    "updated": "2026-11-09T18:44:34Z",
+                    "url": "http://arxiv.org/abs/2605.26949v3",
+                    "pdf_url": "https://arxiv.org/pdf/2605.26949v3",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CV",
+                    "categories": [
+                      "cs.CV",
+                      "cs.GR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2611.12835v1",
+                    "title": "Mitigating Agentic Deception via Evaluation-Side Partially Observable Games",
+                    "summary": "As large language models become more capable agents, they can exhibit deceptive behaviors, cheating human for higher rewards while appearing helpful. We attribute this failure to evaluation-side partial observability, where models are evaluated mainly from final outcome, without checking the faithfulness of underlying reasoning, tool use, and environmental effects. Prior mitigations address this partial observability by predefined evaluator latent belief space or one-shot monitoring, which do not extend to free-form language space and vulnerable to stronger deceptions that evade simple monitoring. In this work, we formulate deception mitigation as an Evaluation-Side Partially Observable Extensive Form Game (e-PoG), a max-min framework in which an agent maximizes reward, a monitor minimizes the agent's payoff by exposing deception from the full interaction trajectory, and a fixed verifier validates the monitor's claims and converts them into penalties. We define the solution concept as a Subgame-Perfect Oversight Equilibrium (SPOE) between agent and monitor, and prove its existence in finite games. With a perfect verifier, every SPOE is faithful; with an imperfect verifier, the guarantee persists if verifier errors do not reverse the ranking of monitor actions. To achieve faithful SPOE, we derive a two-timescale policy gradient algorithm and enhance the pipeline empirically with NLI verification and deterministic checks. Experiments with Gemma3-4B-IT and Qwen3-4B/8B on Agentic Role-Playing, SearchQA, and WebShop show that e-PoG mitigates multiple emergent deception modes, outperforming the strongest baselines by 26.0% in deception mitigation and by up to 39.8% in task success. These gains persist under weak-to-strong supervision. Code is available at https://github.com/Toyoid/deceptive-agent.",
+                    "authors": [
+                      "Hanxiao Li",
+                      "Shutong Liu",
+                      "Yongjia Ma",
+                      "Jiaming Ji",
+                      "Juntao Dai",
+                      "Shuning Zhang",
+                      "Kejian Shi",
+                      "Kai Chen",
+                      "Pu Feng",
+                      "Yuqing Ma",
+                      "Qi Dou",
+                      "Yaodong Yang",
+                      "Xianglong Liu",
+                      "Simin Li"
+                    ],
+                    "published": "2026-11-09T18:33:13Z",
+                    "updated": "2026-11-09T18:33:13Z",
+                    "url": "http://arxiv.org/abs/2611.12835v1",
+                    "pdf_url": "https://arxiv.org/pdf/2611.12835v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.LG",
+                    "categories": [
+                      "cs.LG"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2611.12834v1",
+                    "title": "Programming Prescience: Issues in Human Construction of Forecasting Bots",
+                    "summary": "AI models' growing capacity for complex reasoning has made them attractive tools for forecasting, or the systematic prediction of the future based on past and present data. However, should AI forecasting systems be adopted, human builders will shoulder the work of building and evaluating them. In this paper, we explore what this work looks like with a qualitative interview study with 15 builders of forecasting bots, sampled from among successful participants in a recent AI forecasting competition. Our analysis surfaces the challenges around (1) tuning a bot to acquire factual research, (2) implementing coherent reasoning, and (3) understanding how well one's bot actually does. During their work, builders frequently introduced complexity that did not pay off, and tested in ways that were opportunistic and piecemeal. Our detailed account of their challenges helps clarify what problems should be targeted in upcoming innovations in process, tools, and human-AI teaming for forecasting.",
+                    "authors": [
+                      "Priya Dhawka",
+                      "Benjamin Wilson",
+                      "Andrew Head"
+                    ],
+                    "published": "2026-11-09T18:33:13Z",
+                    "updated": "2026-11-09T18:33:13Z",
+                    "url": "http://arxiv.org/abs/2611.12834v1",
+                    "pdf_url": "https://arxiv.org/pdf/2611.12834v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.HC",
+                    "categories": [
+                      "cs.HC",
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2601.13576v2",
+                    "title": "Control policies for a two-stage queueing system with parallel and single server options",
+                    "summary": "We study a two-stage queueing system attended by two flexible servers. Once a server begins to interact with a job, it remains attached to its job throughout both stages of service. After completing the first-stage service, the server chooses between two second-stage options. Option 1 sends the server-job pair to a parallel-service station where both servers may operate simultaneously; therefore, the server immediately begins the second-stage service on its job. Option 2 routes the pair to a single-service station that admits at most one server-job pair into service at a time. While we consider the complete range of parameters, the usual reason for choosing Option 2 is that jobs may receive higher-quality (faster and/or lower expected cost) service. If the single-service station is occupied, the pair must wait together until the station becomes available. The decision-making scenario is modeled via a Markov decision process formulation of a clearing system with holding costs at each station. Focusing on cases with a large initial queue, we fully characterize the structural properties of an optimal control policy based on the relationship between the service rates at the downstream stations. A numerical study highlights the significance of understanding the structure of the optimal policy by comparing its performance against several natural heuristic policies.",
+                    "authors": [
+                      "Shuwen Lu",
+                      "Mark E. Lewis",
+                      "Jamol Pender"
+                    ],
+                    "published": "2026-01-20T04:01:08Z",
+                    "updated": "2026-11-09T18:22:17Z",
+                    "url": "http://arxiv.org/abs/2601.13576v2",
+                    "pdf_url": "https://arxiv.org/pdf/2601.13576v2",
+                    "source": "arxiv.org",
+                    "primary_category": "math.OC",
+                    "categories": [
+                      "math.OC",
+                      "eess.SY",
+                      "math.PR"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Here are some recent papers on Reasoning Models from arXiv:\n\n1. **[Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning](http://arxiv.org/abs/2611.12886v1)**  \n   - **Authors**: Haozhi Yuan, Handong Li, Yifan Zhang, Qianshan Wei  \n   - **Published**: November 9, 2026  \n   - **Summary**: This paper introduces Reframe, a post-training framework that aligns observation states for visual agents in reinforcement learning. It addresses challenges in tool use and observation grounding, demonstrating improved performance over existing methods.  \n   - **[PDF Link](https://arxiv.org/pdf/2611.12886v1)**\n\n2. **[DinoComplete: 3D Shape Completion with Distilled Semantic Priors and State Space Models](http://arxiv.org/abs/2605.26949v3)**  \n   - **Authors**: Furkan Mert Algan, Eckehard Steinbach  \n   - **Published**: May 26, 2026  \n   - **Summary**: This paper presents DinoComplete, a framework for 3D shape completion that integrates geometric reconstruction with semantic priors. It shows competitive results in shape completion tasks while being efficient in terms of parameters and memory usage.  \n   - **[PDF Link](https://arxiv.org/pdf/2605.26949v3)**\n\n3. **[Mitigating Agentic Deception via Evaluation-Side Partially Observable Games](http://arxiv.org/abs/2611.12835v1)**  \n   - **Authors**: Hanxiao Li et al.  \n   - **Published**: November 9, 2026  \n   - **Summary**: This work formulates deception mitigation in AI as a game-theoretic problem, proposing a framework that enhances the evaluation of agent behavior to prevent deceptive actions.  \n   - **[PDF Link](https://arxiv.org/pdf/2611.12835v1)**\n\n4. **[Programming Prescience: Issues in Human Construction of Forecasting Bots](http://arxiv.org/abs/2611.12834v1)**  \n   - **Authors**: Priya Dhawka, Benjamin Wilson, Andrew Head  \n   - **Published**: November 9, 2026  \n   - **Summary**: This paper explores the challenges faced by builders of AI forecasting bots, highlighting issues in tuning, reasoning, and evaluation of bot performance.  \n   - **[PDF Link](https://arxiv.org/pdf/2611.12834v1)**\n\n5. **[Control policies for a two-stage queueing system with parallel and single server options](http://arxiv.org/abs/2601.13576v2)**  \n   - **Authors**: Shuwen Lu, Mark E. Lewis, Jamol Pender  \n   - **Published**: January 20, 2026  \n   - **Summary**: This study investigates optimal control policies in a two-stage queueing system, providing insights into decision-making processes and performance comparisons with heuristic policies.  \n   - **[PDF Link](https://arxiv.org/pdf/2601.13576v2)**\n\nFeel free to ask if you need more information on any specific paper!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "Reasoning Models",
+            "max_results": 5,
+            "sort_by": "lastUpdatedDate"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "Reasoning Models",
+            "api_query": "all:Reasoning AND all:Models",
+            "total_results": 75287,
+            "items": [
+              {
+                "arxiv_id": "2611.12886v1",
+                "title": "Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning",
+                "summary": "Agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) offer complementary routes to post-training. For visual agents, however, tool use presents two related challenges. Models may overlook useful tool-returned observations, while poorly grounded actions can limit the evidence available for subsequent distillation. We introduce Reframe, a post-training framework that treats the observation state, rather than only the output distribution, as an object of alignment. First, Ground-Drop-GRPO (GD-GRPO) trains spatial and temporal specialists with evidence-aware rewards and stochastic removal of the original visual input, encouraging them to acquire grounded evidence and use the returned observations. Second, Observation-Gated-MOPD (OG-MOPD) replaces deficient tool actions with canonical ones mid-rollout and resumes distillation from the repaired observation. The two stages complement each other, as learning to rely on tool-returned observations can help the policy benefit from observation repair. Neither stage requires a task-specific SFT cold start. Extensive experiments over 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation results show that GD-GRPO increases observation dependence and tool gain compared with outcome-based GRPO.",
+                "authors": [
+                  "Haozhi Yuan",
+                  "Handong Li",
+                  "Yifan Zhang",
+                  "Qianshan Wei"
+                ],
+                "published": "2026-11-09T18:59:54Z",
+                "updated": "2026-11-09T18:59:54Z",
+                "url": "http://arxiv.org/abs/2611.12886v1",
+                "pdf_url": "https://arxiv.org/pdf/2611.12886v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV"
+                ]
+              },
+              {
+                "arxiv_id": "2605.26949v3",
+                "title": "DinoComplete: 3D Shape Completion with Distilled Semantic Priors and State Space Models",
+                "summary": "3D shape completion from partial scans remains challenging for unseen categories and noisy real-world observations, where geometry alone is often insufficient for inferring missing structure. We present DinoComplete, a deterministic and efficient shape completion framework that augments geometric reconstruction with voxel-aligned semantic priors distilled from DINO features. First, we construct multi-view DINO feature volumes aligned with ShapeNet data and train a student network to predict dense semantic features directly from incomplete shapes. These predicted features capture global structure and part-aware semantic context while remaining aligned with the underlying geometry. We then integrate these distilled features into a completion network, where geometric and semantic voxel representations are fused through voxel state-space modeling. To enable efficient long-range reasoning without sacrificing resolution, we introduce a Multi-Scale Voxel Mamba module that refines the fused features by combining full-grid and chunk-wise sequence modeling. Experiments on unseen ShapeNet categories and ScanNet objects show that DinoComplete achieves competitive completion quality than prior deterministic and generative based completion methods while using relatively fewer parameters, requiring lower memory, and achieving faster inference. Our results demonstrate that distilling semantic priors from visual foundation models improves generalization and robustness in 3D shape completion.",
+                "authors": [
+                  "Furkan Mert Algan",
+                  "Eckehard Steinbach"
+                ],
+                "published": "2026-05-26T12:40:52Z",
+                "updated": "2026-11-09T18:44:34Z",
+                "url": "http://arxiv.org/abs/2605.26949v3",
+                "pdf_url": "https://arxiv.org/pdf/2605.26949v3",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV",
+                  "cs.GR"
+                ]
+              },
+              {
+                "arxiv_id": "2611.12835v1",
+                "title": "Mitigating Agentic Deception via Evaluation-Side Partially Observable Games",
+                "summary": "As large language models become more capable agents, they can exhibit deceptive behaviors, cheating human for higher rewards while appearing helpful. We attribute this failure to evaluation-side partial observability, where models are evaluated mainly from final outcome, without checking the faithfulness of underlying reasoning, tool use, and environmental effects. Prior mitigations address this partial observability by predefined evaluator latent belief space or one-shot monitoring, which do not extend to free-form language space and vulnerable to stronger deceptions that evade simple monitoring. In this work, we formulate deception mitigation as an Evaluation-Side Partially Observable Extensive Form Game (e-PoG), a max-min framework in which an agent maximizes reward, a monitor minimizes the agent's payoff by exposing deception from the full interaction trajectory, and a fixed verifier validates the monitor's claims and converts them into penalties. We define the solution concept as a Subgame-Perfect Oversight Equilibrium (SPOE) between agent and monitor, and prove its existence in finite games. With a perfect verifier, every SPOE is faithful; with an imperfect verifier, the guarantee persists if verifier errors do not reverse the ranking of monitor actions. To achieve faithful SPOE, we derive a two-timescale policy gradient algorithm and enhance the pipeline empirically with NLI verification and deterministic checks. Experiments with Gemma3-4B-IT and Qwen3-4B/8B on Agentic Role-Playing, SearchQA, and WebShop show that e-PoG mitigates multiple emergent deception modes, outperforming the strongest baselines by 26.0% in deception mitigation and by up to 39.8% in task success. These gains persist under weak-to-strong supervision. Code is available at https://github.com/Toyoid/deceptive-agent.",
+                "authors": [
+                  "Hanxiao Li",
+                  "Shutong Liu",
+                  "Yongjia Ma",
+                  "Jiaming Ji",
+                  "Juntao Dai",
+                  "Shuning Zhang",
+                  "Kejian Shi",
+                  "Kai Chen",
+                  "Pu Feng",
+                  "Yuqing Ma",
+                  "Qi Dou",
+                  "Yaodong Yang",
+                  "Xianglong Liu",
+                  "Simin Li"
+                ],
+                "published": "2026-11-09T18:33:13Z",
+                "updated": "2026-11-09T18:33:13Z",
+                "url": "http://arxiv.org/abs/2611.12835v1",
+                "pdf_url": "https://arxiv.org/pdf/2611.12835v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2611.12834v1",
+                "title": "Programming Prescience: Issues in Human Construction of Forecasting Bots",
+                "summary": "AI models' growing capacity for complex reasoning has made them attractive tools for forecasting, or the systematic prediction of the future based on past and present data. However, should AI forecasting systems be adopted, human builders will shoulder the work of building and evaluating them. In this paper, we explore what this work looks like with a qualitative interview study with 15 builders of forecasting bots, sampled from among successful participants in a recent AI forecasting competition. Our analysis surfaces the challenges around (1) tuning a bot to acquire factual research, (2) implementing coherent reasoning, and (3) understanding how well one's bot actually does. During their work, builders frequently introduced complexity that did not pay off, and tested in ways that were opportunistic and piecemeal. Our detailed account of their challenges helps clarify what problems should be targeted in upcoming innovations in process, tools, and human-AI teaming for forecasting.",
+                "authors": [
+                  "Priya Dhawka",
+                  "Benjamin Wilson",
+                  "Andrew Head"
+                ],
+                "published": "2026-11-09T18:33:13Z",
+                "updated": "2026-11-09T18:33:13Z",
+                "url": "http://arxiv.org/abs/2611.12834v1",
+                "pdf_url": "https://arxiv.org/pdf/2611.12834v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.HC",
+                "categories": [
+                  "cs.HC",
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2601.13576v2",
+                "title": "Control policies for a two-stage queueing system with parallel and single server options",
+                "summary": "We study a two-stage queueing system attended by two flexible servers. Once a server begins to interact with a job, it remains attached to its job throughout both stages of service. After completing the first-stage service, the server chooses between two second-stage options. Option 1 sends the server-job pair to a parallel-service station where both servers may operate simultaneously; therefore, the server immediately begins the second-stage service on its job. Option 2 routes the pair to a single-service station that admits at most one server-job pair into service at a time. While we consider the complete range of parameters, the usual reason for choosing Option 2 is that jobs may receive higher-quality (faster and/or lower expected cost) service. If the single-service station is occupied, the pair must wait together until the station becomes available. The decision-making scenario is modeled via a Markov decision process formulation of a clearing system with holding costs at each station. Focusing on cases with a large initial queue, we fully characterize the structural properties of an optimal control policy based on the relationship between the service rates at the downstream stations. A numerical study highlights the significance of understanding the structure of the optimal policy by comparing its performance against several natural heuristic policies.",
+                "authors": [
+                  "Shuwen Lu",
+                  "Mark E. Lewis",
+                  "Jamol Pender"
+                ],
+                "published": "2026-01-20T04:01:08Z",
+                "updated": "2026-11-09T18:22:17Z",
+                "url": "http://arxiv.org/abs/2601.13576v2",
+                "pdf_url": "https://arxiv.org/pdf/2601.13576v2",
+                "source": "arxiv.org",
+                "primary_category": "math.OC",
+                "categories": [
+                  "math.OC",
+                  "eess.SY",
+                  "math.PR"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T23:48:31"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-11-10T23:48:33",
+      "user": "Tóm tắt bài viết này giúp mình",
+      "status": "answered",
+      "assistant_text": "Here is a summary of the paper titled **\"[Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning](http://arxiv.org/abs/2611.12886v1)\"** by Haozhi Yuan et al.:\n\n### Summary:\nThe paper introduces **Reframe**, a post-training framework designed to enhance agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) for visual agents. It addresses two main challenges in tool use: the potential neglect of useful observations returned by tools and the limitations posed by poorly grounded actions.\n\n**Key Components of Reframe:**\n1. **Ground-Drop-GRPO (GD-GRPO)**: This component trains spatial and temporal specialists using evidence-aware rewards while randomly removing original visual inputs. This encourages the model to rely on grounded evidence and effectively utilize observations returned by tools.\n   \n2. **Observation-Gated-MOPD (OG-MOPD)**: This stage replaces ineffective tool actions with standard actions during the rollout process and continues distillation from the corrected observations.\n\nThe two stages work synergistically, as learning to depend on tool-returned observations enhances the policy's ability to benefit from observation repairs. Notably, neither stage requires a task-specific supervised fine-tuning (SFT) cold start.\n\n### Results:\nExtensive experiments across 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation studies indicate that GD-GRPO increases the model's dependence on observations and improves tool utilization compared to outcome-based GRPO.\n\nFor more details, you can access the full paper [here](https://arxiv.org/pdf/2611.12886v1).",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "fetch",
+              "args": {
+                "url": "http://arxiv.org/abs/2611.12886v1"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "fetch",
+              "args": {
+                "url": "http://arxiv.org/abs/2611.12886v1"
+              },
+              "result": {
+                "tool": "read_url",
+                "url": "http://arxiv.org/abs/2611.12886v1",
+                "items": [
+                  {
+                    "title": "[2611.12886v1] Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning",
+                    "url": "http://arxiv.org/abs/2611.12886v1",
+                    "source": "arxiv.org",
+                    "summary": "[Skip to main content](https://arxiv.org/abs/2611.12886v1#content)\n\nSearch arXiv\n\nPress Enter to search · [Advanced search](https://arxiv.org/search/advanced)\n\n# Computer Science > Computer Vision and Pattern Recognition\n\n**arXiv:2611.12886v1** (cs)\n\n\n\\[Submitted on 9 Nov 2026\\]\n\n# Title:Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning\n\nAuthors: [Haozhi Yuan](https://arxiv.org/search/cs?searchtype=author&query=Yuan,+H), [Handong Li](https://arxiv.org/search/cs?searchtype=author&query=Li,+H), [Yifan Zhang](https://arxiv.org/search/cs?searchtype=author&query=Zhang,+Y), [Qianshan Wei](https://arxiv.org/search/cs?searchtype=author&query=Wei,+Q)\n\nView a PDF of the paper titled Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning, by Haozhi Yuan and 3 other authors\n\n[View PDF](https://arxiv.org/pdf/2611.12886v1) [HTML (experimental)](https://arxiv.org/html/2611.12886v1)\n\n> Abstract:Agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) offer complementary routes to post-training. For visual agents, however, tool use presents two related challenges. Models may overlook useful tool-returned observations, while poorly grounded actions can limit the evidence available for subsequent distillation. We introduce Reframe, a post-training framework that treats the observation state, rather than only the output distribution, as an object of alignment. First, Ground-Drop-GRPO (GD-GRPO) trains spatial and temporal specialists with evidence-aware rewards and stochastic removal of the original visual input, encouraging them to acquire grounded evidence and use the returned observations. Second, Observation-Gated-MOPD (OG-MOPD) replaces deficient tool actions with canonical ones mid-rollout and resumes distillation from the repaired observation. The two stages complement each other, as learning to rely on tool-returned observations can help the policy benefit from observation repair. Neither stage requires a task-specific SFT cold start. Extensive experiments over 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation results show that GD-GRPO increases observation dependence and tool gain compared with outcome-based GRPO.\n\n|     |     |\n| --- | --- |\n| Subjects: | Computer Vision and Pattern Recognition (cs.CV) |\n| Cite as: | [arXiv:2611.12886](https://arxiv.org/abs/2611.12886) \\[cs.CV\\] |\n|  | (or [arXiv:2611.12886v1](https://arxiv.org/abs/2611.12886v1) \\[cs.CV\\] for this version) |\n|  | [https://doi.org/10.48550/arXiv.2611.12886](https://doi.org/10.48550/arXiv.2611.12886)<br>Focus to learn more<br>arXiv-issued DOI via DataCite (pending registration) |\n\n## Submission history\n\nFrom: Haozhi Yuan \\[ [view email](https://arxiv.org/show-email/09e4565e/2611.12886)\\]\n\n**\\[v1\\]**\nMon, 9 Nov 2026 18:59:54 UTC (1,843 KB)\n\nFull-text links:\n\n## Access Paper:\n\nView a PDF of the paper titled Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning, by Haozhi Yuan and 3 other authors\n\n- [View PDF](https://arxiv.org/pdf/2611.12886v1)\n- [HTML (experimental)](https://arxiv.org/html/2611.12886v1)\n- [TeX Source](https://arxiv.org/src/2611.12886v1)\n\n[view license](http://arxiv.org/licenses/nonexclusive-distrib/1.0/ \"Rights to this article\")\n\n### Additional Features\n\n- [Audio Summary](https://arxiv.org/audio/2611.12886v1)\n\n### Current browse context:\n\ncs.CV\n\n[< prev](https://arxiv.org/prevnext?id=2611.12886&function=prev&context=cs.CV \"previous in cs.CV (accesskey p)\")  \\|  [next >](https://arxiv.org/prevnext?id=2611.12886&function=next&context=cs.CV \"next in cs.CV (accesskey n)\")\n\n[new](https://arxiv.org/list/cs.CV/new) \\| [recent](https://arxiv.org/list/cs.CV/recent) \\| [2026-11](https://arxiv.org/list/cs.CV/2026-11)\n\nChange to browse by:\n\n\n[cs](https://arxiv.org/abs/2611.12886?context=cs)\n\n### References & Citations\n\n- [SciX](https://scixplorer.org/abs/arXiv:261"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Here is a summary of the paper titled **\"[Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning](http://arxiv.org/abs/2611.12886v1)\"** by Haozhi Yuan et al.:\n\n### Summary:\nThe paper introduces **Reframe**, a post-training framework designed to enhance agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) for visual agents. It addresses two main challenges in tool use: the potential neglect of useful observations returned by tools and the limitations posed by poorly grounded actions.\n\n**Key Components of Reframe:**\n1. **Ground-Drop-GRPO (GD-GRPO)**: This component trains spatial and temporal specialists using evidence-aware rewards while randomly removing original visual inputs. This encourages the model to rely on grounded evidence and effectively utilize observations returned by tools.\n   \n2. **Observation-Gated-MOPD (OG-MOPD)**: This stage replaces ineffective tool actions with standard actions during the rollout process and continues distillation from the corrected observations.\n\nThe two stages work synergistically, as learning to depend on tool-returned observations enhances the policy's ability to benefit from observation repairs. Notably, neither stage requires a task-specific supervised fine-tuning (SFT) cold start.\n\n### Results:\nExtensive experiments across 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation studies indicate that GD-GRPO increases the model's dependence on observations and improves tool utilization compared to outcome-based GRPO.\n\nFor more details, you can access the full paper [here](https://arxiv.org/pdf/2611.12886v1).",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "http://arxiv.org/abs/2611.12886v1"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "http://arxiv.org/abs/2611.12886v1",
+            "items": [
+              {
+                "title": "[2611.12886v1] Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning",
+                "url": "http://arxiv.org/abs/2611.12886v1",
+                "source": "arxiv.org",
+                "summary": "[Skip to main content](https://arxiv.org/abs/2611.12886v1#content)\n\nSearch arXiv\n\nPress Enter to search · [Advanced search](https://arxiv.org/search/advanced)\n\n# Computer Science > Computer Vision and Pattern Recognition\n\n**arXiv:2611.12886v1** (cs)\n\n\n\\[Submitted on 9 Nov 2026\\]\n\n# Title:Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning\n\nAuthors: [Haozhi Yuan](https://arxiv.org/search/cs?searchtype=author&query=Yuan,+H), [Handong Li](https://arxiv.org/search/cs?searchtype=author&query=Li,+H), [Yifan Zhang](https://arxiv.org/search/cs?searchtype=author&query=Zhang,+Y), [Qianshan Wei](https://arxiv.org/search/cs?searchtype=author&query=Wei,+Q)\n\nView a PDF of the paper titled Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning, by Haozhi Yuan and 3 other authors\n\n[View PDF](https://arxiv.org/pdf/2611.12886v1) [HTML (experimental)](https://arxiv.org/html/2611.12886v1)\n\n> Abstract:Agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) offer complementary routes to post-training. For visual agents, however, tool use presents two related challenges. Models may overlook useful tool-returned observations, while poorly grounded actions can limit the evidence available for subsequent distillation. We introduce Reframe, a post-training framework that treats the observation state, rather than only the output distribution, as an object of alignment. First, Ground-Drop-GRPO (GD-GRPO) trains spatial and temporal specialists with evidence-aware rewards and stochastic removal of the original visual input, encouraging them to acquire grounded evidence and use the returned observations. Second, Observation-Gated-MOPD (OG-MOPD) replaces deficient tool actions with canonical ones mid-rollout and resumes distillation from the repaired observation. The two stages complement each other, as learning to rely on tool-returned observations can help the policy benefit from observation repair. Neither stage requires a task-specific SFT cold start. Extensive experiments over 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation results show that GD-GRPO increases observation dependence and tool gain compared with outcome-based GRPO.\n\n|     |     |\n| --- | --- |\n| Subjects: | Computer Vision and Pattern Recognition (cs.CV) |\n| Cite as: | [arXiv:2611.12886](https://arxiv.org/abs/2611.12886) \\[cs.CV\\] |\n|  | (or [arXiv:2611.12886v1](https://arxiv.org/abs/2611.12886v1) \\[cs.CV\\] for this version) |\n|  | [https://doi.org/10.48550/arXiv.2611.12886](https://doi.org/10.48550/arXiv.2611.12886)<br>Focus to learn more<br>arXiv-issued DOI via DataCite (pending registration) |\n\n## Submission history\n\nFrom: Haozhi Yuan \\[ [view email](https://arxiv.org/show-email/09e4565e/2611.12886)\\]\n\n**\\[v1\\]**\nMon, 9 Nov 2026 18:59:54 UTC (1,843 KB)\n\nFull-text links:\n\n## Access Paper:\n\nView a PDF of the paper titled Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning, by Haozhi Yuan and 3 other authors\n\n- [View PDF](https://arxiv.org/pdf/2611.12886v1)\n- [HTML (experimental)](https://arxiv.org/html/2611.12886v1)\n- [TeX Source](https://arxiv.org/src/2611.12886v1)\n\n[view license](http://arxiv.org/licenses/nonexclusive-distrib/1.0/ \"Rights to this article\")\n\n### Additional Features\n\n- [Audio Summary](https://arxiv.org/audio/2611.12886v1)\n\n### Current browse context:\n\ncs.CV\n\n[< prev](https://arxiv.org/prevnext?id=2611.12886&function=prev&context=cs.CV \"previous in cs.CV (accesskey p)\")  \\|  [next >](https://arxiv.org/prevnext?id=2611.12886&function=next&context=cs.CV \"next in cs.CV (accesskey n)\")\n\n[new](https://arxiv.org/list/cs.CV/new) \\| [recent](https://arxiv.org/list/cs.CV/recent) \\| [2026-11](https://arxiv.org/list/cs.CV/2026-11)\n\nChange to browse by:\n\n\n[cs](https://arxiv.org/abs/2611.12886?context=cs)\n\n### References & Citations\n\n- [SciX](https://scixplorer.org/abs/arXiv:261"
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T23:48:44"
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-11-10T23:48:49",
+      "user": "Đăng bản tin này lên Telegram giúp mình",
+      "status": "waiting_for_user",
+      "assistant_text": "Bạn có xác nhận muốn gửi bản tin này lên Telegram không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "clarify",
+              "args": {
+                "question": "Bạn có xác nhận muốn gửi bản tin này lên Telegram không?",
+                "response_type": "yes_no"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "clarify",
+              "args": {
+                "question": "Bạn có xác nhận muốn gửi bản tin này lên Telegram không?",
+                "response_type": "yes_no"
+              },
+              "result": {
+                "tool": "ask_user",
+                "question": "Bạn có xác nhận muốn gửi bản tin này lên Telegram không?",
+                "response_type": "yes_no",
+                "options": [],
+                "awaiting_user": true
+              }
+            }
+          ]
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có xác nhận muốn gửi bản tin này lên Telegram không?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có xác nhận muốn gửi bản tin này lên Telegram không?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T23:48:51"
+    },
+    {
+      "turn_index": 4,
+      "started_at": "2026-11-10T23:48:56",
+      "user": "yes",
+      "status": "answered",
+      "assistant_text": "Có vẻ như đã xảy ra lỗi khi cố gắng gửi bản tin lên Telegram do thiếu thông tin cần thiết (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID). Bạn có muốn thử lại hoặc cung cấp thông tin cần thiết để tôi có thể gửi bản tin không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "send",
+              "args": {
+                "text": "**Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning**  \n\n**Summary:**  \nThe paper introduces **Reframe**, a post-training framework designed to enhance agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) for visual agents. It addresses two main challenges in tool use: the potential neglect of useful observations returned by tools and the limitations posed by poorly grounded actions.  \n\n**Key Components of Reframe:**  \n1. **Ground-Drop-GRPO (GD-GRPO)**: This component trains spatial and temporal specialists using evidence-aware rewards while randomly removing original visual inputs. This encourages the model to rely on grounded evidence and effectively utilize observations returned by tools.  \n2. **Observation-Gated-MOPD (OG-MOPD)**: This stage replaces ineffective tool actions with standard actions during the rollout process and continues distillation from the corrected observations.  \n\nThe two stages work synergistically, as learning to depend on tool-returned observations enhances the policy's ability to benefit from observation repairs. Notably, neither stage requires a task-specific supervised fine-tuning (SFT) cold start.  \n\n**Results:**  \nExtensive experiments across 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation studies indicate that GD-GRPO increases the model's dependence on observations and improves tool utilization compared to outcome-based GRPO.  \n\nFor more details, you can access the full paper [here](https://arxiv.org/pdf/2611.12886v1).",
+                "confirmed": true
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "send",
+              "args": {
+                "text": "**Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning**  \n\n**Summary:**  \nThe paper introduces **Reframe**, a post-training framework designed to enhance agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) for visual agents. It addresses two main challenges in tool use: the potential neglect of useful observations returned by tools and the limitations posed by poorly grounded actions.  \n\n**Key Components of Reframe:**  \n1. **Ground-Drop-GRPO (GD-GRPO)**: This component trains spatial and temporal specialists using evidence-aware rewards while randomly removing original visual inputs. This encourages the model to rely on grounded evidence and effectively utilize observations returned by tools.  \n2. **Observation-Gated-MOPD (OG-MOPD)**: This stage replaces ineffective tool actions with standard actions during the rollout process and continues distillation from the corrected observations.  \n\nThe two stages work synergistically, as learning to depend on tool-returned observations enhances the policy's ability to benefit from observation repairs. Notably, neither stage requires a task-specific supervised fine-tuning (SFT) cold start.  \n\n**Results:**  \nExtensive experiments across 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation studies indicate that GD-GRPO increases the model's dependence on observations and improves tool utilization compared to outcome-based GRPO.  \n\nFor more details, you can access the full paper [here](https://arxiv.org/pdf/2611.12886v1).",
+                "confirmed": true
+              },
+              "result": {
+                "tool": "send_telegram",
+                "error": "RuntimeError",
+                "message": "Missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Có vẻ như đã xảy ra lỗi khi cố gắng gửi bản tin lên Telegram do thiếu thông tin cần thiết (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID). Bạn có muốn thử lại hoặc cung cấp thông tin cần thiết để tôi có thể gửi bản tin không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "send",
+          "args": {
+            "text": "**Reframe: Observation-Aligned Multi-Teacher On-Policy Distillation for Agentic Visual Reasoning**  \n\n**Summary:**  \nThe paper introduces **Reframe**, a post-training framework designed to enhance agentic reinforcement learning (RL) and multi-teacher on-policy distillation (MOPD) for visual agents. It addresses two main challenges in tool use: the potential neglect of useful observations returned by tools and the limitations posed by poorly grounded actions.  \n\n**Key Components of Reframe:**  \n1. **Ground-Drop-GRPO (GD-GRPO)**: This component trains spatial and temporal specialists using evidence-aware rewards while randomly removing original visual inputs. This encourages the model to rely on grounded evidence and effectively utilize observations returned by tools.  \n2. **Observation-Gated-MOPD (OG-MOPD)**: This stage replaces ineffective tool actions with standard actions during the rollout process and continues distillation from the corrected observations.  \n\nThe two stages work synergistically, as learning to depend on tool-returned observations enhances the policy's ability to benefit from observation repairs. Notably, neither stage requires a task-specific supervised fine-tuning (SFT) cold start.  \n\n**Results:**  \nExtensive experiments across 14 image and video benchmarks demonstrate that Reframe outperforms both Mix-RL and vanilla MOPD. Ablation studies indicate that GD-GRPO increases the model's dependence on observations and improves tool utilization compared to outcome-based GRPO.  \n\nFor more details, you can access the full paper [here](https://arxiv.org/pdf/2611.12886v1).",
+            "confirmed": true
+          },
+          "result": {
+            "tool": "send_telegram",
+            "error": "RuntimeError",
+            "message": "Missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID env var"
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T23:49:05"
+    }
+  ]
+}

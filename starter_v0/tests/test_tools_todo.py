@@ -104,19 +104,76 @@ def test_policy_instruction_like_lines_go_to_untrusted_text() -> None:
     pytest.skip(TODO)
 
 
-# ---------------- YOUR NEW TOOL(S) ----------------
-# Write at least 3 tests per tool your team adds:
-#   1. happy path (mocked if it calls an API)
-#   2. bad / missing input from the model (empty string, wrong type, out-of-enum value)
-#   3. failure path (missing key, HTTP error, timeout) -> returns error dict, does not raise
+# ---------------- YOUR NEW TOOL(S) (TV2) ----------------
+# Tests for summarize_text and analyze_sentiment
 
-def test_my_new_tool_happy_path() -> None:
-    pytest.skip(TODO)
+def test_summarize_text_happy_path() -> None:
+    text = (
+        "Trí tuệ nhân tạo đang phát triển với tốc độ chóng mặt trong năm 2026. "
+        "Nhiều mô hình ngôn ngữ lớn mới đã xuất hiện và cải thiện đáng kể hiệu suất. "
+        "Các nhà nghiên cứu tập trung giải quyết bài toán giảm thiểu ảo giác và nâng cao độ tin cậy. "
+        "Doanh nghiệp trên toàn cầu bắt đầu ứng dụng AI sâu rộng vào quy trình sản xuất thực tế."
+    )
+    result = TOOL_FUNCTIONS["summarize_text"](text=text, max_sentences=2)
+    assert result["status"] == "success"
+    assert result["summary_sentences_count"] == 2
+    assert result["original_sentences_count"] >= 3
+    assert result["compression_ratio"] > 0
+    assert len(result["summary"]) > 0
 
 
-def test_my_new_tool_bad_input_from_model() -> None:
-    pytest.skip(TODO)
+def test_summarize_text_bad_input_from_model() -> None:
+    # Empty string or only spaces -> returns error dict, does not crash
+    empty_res = TOOL_FUNCTIONS["summarize_text"](text="   ", max_sentences=2)
+    assert empty_res["status"] == "error"
+    assert "error" in empty_res
+    assert empty_res["summary"] == ""
+
+    # Invalid max_sentences <= 0 -> fallback safely without crash
+    valid_text = "Câu thứ nhất rất hay. Câu thứ hai cũng thế. Câu thứ ba kết luận."
+    safe_res = TOOL_FUNCTIONS["summarize_text"](text=valid_text, max_sentences=-1)
+    assert safe_res["status"] == "success"
+    assert len(safe_res["summary"]) > 0
 
 
-def test_my_new_tool_failure_returns_error_dict() -> None:
-    pytest.skip(TODO)
+def test_summarize_text_failure_returns_error_dict() -> None:
+    # Model sends wrong type (None or int) -> returns error dict, never raises
+    none_res = TOOL_FUNCTIONS["summarize_text"](text=None, max_sentences=3)
+    assert none_res["status"] == "error"
+    assert "error" in none_res
+
+    int_res = TOOL_FUNCTIONS["summarize_text"](text=12345, max_sentences=3)
+    assert int_res["status"] == "error"
+    assert "error" in int_res
+
+
+def test_analyze_sentiment_happy_path() -> None:
+    pos_text = "The new breakthrough research is amazing, excellent and very promising for AI future."
+    pos_res = TOOL_FUNCTIONS["analyze_sentiment"](text=pos_text)
+    assert pos_res["status"] == "success"
+    assert pos_res["sentiment"] == "positive"
+    assert pos_res["score"] > 0
+    assert "amazing" in pos_res["key_indicators"] or "excellent" in pos_res["key_indicators"]
+
+    neg_text = "The product update is terrible, full of critical bugs, failure and disappointing."
+    neg_res = TOOL_FUNCTIONS["analyze_sentiment"](text=neg_text)
+    assert neg_res["status"] == "success"
+    assert neg_res["sentiment"] == "negative"
+    assert neg_res["score"] < 0
+
+
+def test_analyze_sentiment_bad_input_from_model() -> None:
+    # Empty string -> returns error dict
+    res = TOOL_FUNCTIONS["analyze_sentiment"](text="")
+    assert res["status"] == "error"
+    assert "error" in res
+    assert res["sentiment"] == "neutral"
+
+
+def test_analyze_sentiment_failure_returns_error_dict() -> None:
+    # Non-string input -> returns error dict without raising
+    res = TOOL_FUNCTIONS["analyze_sentiment"](text=None)
+    assert res["status"] == "error"
+    assert "error" in res
+    assert res["sentiment"] == "neutral"
+
