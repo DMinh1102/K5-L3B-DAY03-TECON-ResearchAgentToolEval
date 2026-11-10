@@ -62,9 +62,9 @@ Local demo: Chạy streamlit run app.py và truy cập http://localhost:8501.
 
 > 3–5 câu hỏi/yêu cầu mẫu để team khác tự thử agent ngay.
 
-1.
-2.
-3.
+1. Send an email saying that the meeting has been postponed until Friday.
+2. Can you physically repair my laptop screen and replace its broken hardware?
+3. Send this message: The project deadline has been moved to Friday.
 
 ## 3. Giải pháp
 
