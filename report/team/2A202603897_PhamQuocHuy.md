@@ -1,8 +1,5 @@
 # Báo cáo cá nhân — PhamQuocHuy-2A202603897
 
-Đổi tên file theo quy tắc `MSSV_HoTen.md`.
-
-Ví dụ: `20241234_NguyenVanAn.md`.
 
 ## 1. Thông tin thành viên
 
