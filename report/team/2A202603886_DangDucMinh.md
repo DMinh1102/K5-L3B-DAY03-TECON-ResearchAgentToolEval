@@ -4,7 +4,7 @@
 
 - Họ tên: Đặng Đức Minh
 - MSSV: 2A202603886
-- Vai trò: Prompt & Optimization Lead (Thành viên 1)
+- Vai trò: Prompt & Optimization Lead 
 
 ## 2. Phần việc phụ trách
 
@@ -41,7 +41,6 @@
 
 ## 5. Tự đánh giá
 
-- Hoàn thành 100% nhiệm vụ được phân công vượt tiến độ.
+- Hoàn thành nhiệm vụ được phân công.
 - Nâng độ chính xác của Agent từ 65% lên 100% tuyệt đối theo đúng phương pháp evidence-driven.
-- Tuân thủ chặt chẽ liêm chính học thuật, không rò rỉ secret/API key, dữ liệu thực nghiệm trung thực 100%.
-- Đánh giá đóng góp cá nhân: 10/10.
+- Tuân thủ chặt chẽ liêm chính học thuật, không rò rỉ secret/API key.

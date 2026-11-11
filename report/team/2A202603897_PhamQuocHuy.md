@@ -67,4 +67,4 @@ Ví dụ: `20241234_NguyenVanAn.md`.
 
 ## 5. Tự đánh giá
 
-- Hoàn thành xây dựng 2 tool mới thay vì 1 tool, viết đầy đủ 6 unit tests offline pass 100%, bảo đảm contract test luôn xanh và chủ động hỗ trợ đồng đội với tài liệu bàn giao hoàn chỉnh.
+- Hoàn thành xây dựng 2 tool mới, viết đầy đủ 6 unit tests offline pass 100%, bảo đảm contract test luôn xanh và chủ động hỗ trợ đồng đội với tài liệu bàn giao hoàn chỉnh.

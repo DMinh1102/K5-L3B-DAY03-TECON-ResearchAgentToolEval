@@ -24,7 +24,7 @@
   - Thiết kế giao diện trò chuyện trực quan: hiển thị tin nhắn người dùng, luồng suy nghĩ của mô hình, chi tiết từng tool call kèm tham số đối số, và kết quả trả về từ công cụ.
   - Quản lý trạng thái phiên làm việc (`session_state`) mượt mà, hỗ trợ reset hội thoại và cấu hình linh hoạt.
 - **Biên soạn Phần A Báo cáo nhóm (`group_report.md`):**
-  - Hoàn thành đúng hạn trước 16:30: tóm tắt năng lực cốt lõi của Agent (A1), tổng hợp bảng 12 công cụ kèm 2 tool mới (A2), và soạn 4 câu hỏi mẫu minh họa các tình huống tương tác thực tế (A3).
+  - Tóm tắt năng lực cốt lõi của Agent (A1), tổng hợp bảng 12 công cụ kèm 2 tool mới (A2), và soạn 4 câu hỏi mẫu minh họa các tình huống tương tác thực tế (A3).
 
 ## 4. Bằng chứng
 
@@ -41,7 +41,6 @@
 
 ## 5. Tự đánh giá
 
-- Hoàn thành 100% nhiệm vụ được phân công đúng tiến độ.
+- Hoàn thành nhiệm vụ được phân công.
 - Xây dựng bộ test eval nhóm chất lượng cao (đạt điểm tuyệt đối 10/10) và ứng dụng UI tương tác hoạt động ổn định, trực quan.
 - Tuân thủ liêm chính học thuật, dữ liệu thực nghiệm trung thực.
-- Đánh giá đóng góp cá nhân: 10/10.
