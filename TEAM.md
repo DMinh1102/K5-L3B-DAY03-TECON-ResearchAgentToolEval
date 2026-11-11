@@ -12,9 +12,9 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Đặng Đức Minh | 2A202603886 | ddminh1102@gmail.com | DMinh1102 | Prompt & Optimization Lead |
-|   2 | Phạm Quốc Huy | 2A202603897 | huymix2k4@gmail.com | [GitHub Username] | Tool Engineering & Testing Lead |
-|   3 | Đào Vũ Minh Khánh | 2A202603878 | daovuminhkhanh@gmail.com | [GitHub Username] | Evaluation, UI & Live Demo Lead  |
+|   1 | Đặng Đức Minh | 2A202603886 | 26ai.minhdd3@vinuni.edu.vn | DMinh1102 | Prompt & Optimization Lead |
+|   2 | Phạm Quốc Huy | 2A202603897 | 26ai.huypq5@vinuni.edu.vn | pqhuy454 | Tool Engineering & Testing Lead |
+|   3 | Đào Vũ Minh Khánh | 2A202603878 | 26ai.khanhdvm@vinuni.edu.vn | iamdvmk | Evaluation, UI & Live Demo Lead  |
 
 
 ## Thành viên 1: Đặng Đức Minh - 2A202603886
